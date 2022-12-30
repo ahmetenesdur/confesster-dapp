@@ -1,6 +1,26 @@
 import React from 'react'
 import Image from 'next/image'
-import { Box, Flex, HStack, Link, useColorModeValue } from '@chakra-ui/react'
+import { Web3Button } from "@web3modal/react";
+import { useAccount } from "@web3modal/react";
+import {
+    Box,
+    Flex,
+    HStack,
+    IconButton,
+    Link,
+    useColorModeValue,
+    useColorMode,
+    Button,
+    useDisclosure,
+    Stack,
+} from "@chakra-ui/react";
+import {
+    AddIcon,
+    CloseIcon,
+    HamburgerIcon,
+    MoonIcon,
+    SunIcon,
+} from "@chakra-ui/icons";
 
 const links = [
     { label: 'My Confessions', to: '/myconfessions' },
@@ -23,13 +43,15 @@ const NavLink = ({ children, to }) => (
 );
 
 const Layout = () => {
+    // const { account, isReady } = useAccount();
+
     return (
         <Box
             h="100vh"
             w="100vw"
             position="relative"
             zIndex="0"
-            BG={useColorModeValue('white', '#171923')}>
+            bg={useColorModeValue('white', '#171923')}>
             <Box px={4} maxWidth={'5xl'} m={'auto'} mt={'5'}>
                 <Flex h={'16'} alignItems={'center'} justifyContent={'space-between'}>
                     <HStack spacing={8} alignItems={'center'}>
@@ -54,6 +76,9 @@ const Layout = () => {
                             ))}
                         </HStack>
                     </HStack>
+                </Flex>
+                <Flex>
+                    <Web3Button />
                 </Flex>
             </Box>
         </Box>
