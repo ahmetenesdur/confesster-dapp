@@ -7,7 +7,7 @@ import Layout from '../components/Layout'
 
 import '../styles/globals.css'
 
-const theme = extendTheme({
+export const theme = extendTheme({
   fonts: {
     heading: 'M PLUS Rounded 1c',
     body: 'Open Sans',
