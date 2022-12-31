@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("@nomiclabs/hardhat-etherscan");
 require('dotenv').config({
   path: './.env.local'
 });
@@ -12,4 +13,7 @@ module.exports = {
       accounts: [`0x${process.env.METAMASK_PRIVATE_KEY}`],
     },
   },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY,
+  }
 };
