@@ -39,14 +39,15 @@ export const theme = extendTheme({
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
-      <WagmiConfig client={wagmiClient}>
-        <ChakraProvider theme={theme}>
+    <div>
+      <ChakraProvider theme={theme}>
+        <WagmiConfig client={wagmiClient}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </ChakraProvider>
-      </WagmiConfig>
+        </WagmiConfig>
+      </ChakraProvider>
+
 
       <Web3Modal
         projectId={process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID}
@@ -54,6 +55,6 @@ export default function App({ Component, pageProps }) {
         themeMode="dark"
         themeColor="magenta"
       />
-    </>
+    </div>
   )
 }
