@@ -6,7 +6,7 @@
       "contentHash": "d08bee323eeec1873617c0d2b558e56e",
       "sourceName": "contracts/Confesster.sol",
       "solcConfig": {
-        "version": "0.8.17",
+        "version": "0.8.9",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -44,7 +44,7 @@
       "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
-        "version": "0.8.17",
+        "version": "0.8.9",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -79,7 +79,7 @@
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
-        "version": "0.8.17",
+        "version": "0.8.9",
         "settings": {
           "optimizer": {
             "enabled": false,
