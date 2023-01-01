@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Web3Button } from "@web3modal/react";
-import { useAccount } from 'wagmi'
+import { useAccount, useConnect } from 'wagmi'
 import {
     Box,
     Flex,
@@ -48,7 +48,8 @@ const NavLink = ({ children, to }) => (
 const Layout = ({ children }) => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { account, isReady } = useAccount();
+    const { address, isConnected } = useAccount();
+    const { connect } = useConnect();
 
     const {
         isOpen: isModalOpen,
@@ -62,7 +63,7 @@ const Layout = ({ children }) => {
             w="100vw"
             position="relative"
             zIndex="0"
-            BG={useColorModeValue("white", "#171923")}
+            bg={useColorModeValue("white", "#171923")}
         >
             <Box px={4} maxWidth={"5xl"} m={"auto"} mt={"5"}>
                 <Flex h={"16"} alignItems={"center"} justifyContent={"space-between"}>
@@ -109,7 +110,7 @@ const Layout = ({ children }) => {
                             mr={4}
                         />
 
-                        {isReady && account.isConnected && (
+                        {connect && isConnected && (
                             <Button
                                 variant={"solid"}
                                 colorScheme={"pink"}
@@ -122,9 +123,9 @@ const Layout = ({ children }) => {
                             </Button>
                         )}
 
-                        {isReady && account.isConnected ? (
+                        {connect && isConnected ? (
                             <Button variant={"outline"} colorScheme={"pink"} size={"sm"}>
-                                {account.address?.slice(0, 6)}...{account?.address.slice(-4)}
+                                {address?.slice(0, 6)}...{address?.slice(-4)}
                             </Button>
                         ) : (
                             <Web3Button />
@@ -154,7 +155,7 @@ const Layout = ({ children }) => {
                                 mr={4}
                             />
 
-                            {isReady && account.isConnected && (
+                            {connect && isConnected && (
                                 <Button
                                     variant={"solid"}
                                     colorScheme={"pink"}
@@ -167,9 +168,9 @@ const Layout = ({ children }) => {
                                 </Button>
                             )}
 
-                            {isReady && account.isConnected ? (
+                            {connect && isConnected ? (
                                 <Button variant={"outline"} colorScheme={"pink"} size={"sm"}>
-                                    {account.address?.slice(0, 6)}...{account?.address.slice(-4)}
+                                    {address?.slice(0, 6)}...{address?.slice(-4)}
                                 </Button>
                             ) : (
                                 <Web3Button />

@@ -48,7 +48,6 @@ export default function App({ Component, pageProps }) {
         </WagmiConfig>
       </ChakraProvider>
 
-
       <Web3Modal
         projectId={process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID}
         ethereumClient={ethereumClient}
