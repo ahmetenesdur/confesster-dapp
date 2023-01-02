@@ -22,7 +22,7 @@ import {
     SunIcon,
 } from "@chakra-ui/icons";
 
-// import ConfessionModal from "./ConfessionModal";
+import ConfessionModal from "./ConfessionModal";
 
 const links = [
     { label: "My Confessions", to: "/myconfessions" },
@@ -184,7 +184,7 @@ const Layout = ({ children }) => {
                 {children}
             </Box>
 
-            {/* <ConfessionModal isOpen={isModalOpen} onClose={onModalClose} /> */}
+            <ConfessionModal isOpen={isModalOpen} onClose={onModalClose} />
         </Box>
     );
 };
