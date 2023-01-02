@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Web3Button } from "@web3modal/react";
-import { useAccount, useConnect } from 'wagmi'
+import { useAccount } from "wagmi";
 import {
     Box,
     Flex,
@@ -49,7 +49,6 @@ const Layout = ({ children }) => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { address, isConnected } = useAccount();
-    const { connect } = useConnect();
 
     const {
         isOpen: isModalOpen,
@@ -110,7 +109,7 @@ const Layout = ({ children }) => {
                             mr={4}
                         />
 
-                        {connect && isConnected && (
+                        {isConnected && (
                             <Button
                                 variant={"solid"}
                                 colorScheme={"pink"}
@@ -123,7 +122,7 @@ const Layout = ({ children }) => {
                             </Button>
                         )}
 
-                        {connect && isConnected ? (
+                        {isConnected ? (
                             <Button variant={"outline"} colorScheme={"pink"} size={"sm"}>
                                 {address?.slice(0, 6)}...{address?.slice(-4)}
                             </Button>
@@ -155,7 +154,7 @@ const Layout = ({ children }) => {
                                 mr={4}
                             />
 
-                            {connect && isConnected && (
+                            {isConnected && (
                                 <Button
                                     variant={"solid"}
                                     colorScheme={"pink"}
@@ -168,7 +167,7 @@ const Layout = ({ children }) => {
                                 </Button>
                             )}
 
-                            {connect && isConnected ? (
+                            {isConnected ? (
                                 <Button variant={"outline"} colorScheme={"pink"} size={"sm"}>
                                     {address?.slice(0, 6)}...{address?.slice(-4)}
                                 </Button>

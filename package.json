@@ -20,6 +20,7 @@
     "@openzeppelin/contracts": "^4.8.0",
     "@web3modal/ethereum": "^2.0.0-rc.1",
     "@web3modal/react": "^2.0.0-rc.1",
+    "axios": "^1.2.2",
     "dotenv": "^16.0.3",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",

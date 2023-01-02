@@ -17,6 +17,8 @@ import {
     Link,
 } from "@chakra-ui/react";
 
+import saveToIPFS from '../utils/saveToIPFS';
+
 const ConfessionModal = ({ isOpen, onClose }) => {
     const [audio, setAudio] = useState(null);
     const [message, setMessage] = useState('');
@@ -26,7 +28,17 @@ const ConfessionModal = ({ isOpen, onClose }) => {
     const initialRef = useRef();
     const audioRef = useRef();
 
-    const makeConfession = async () => {};
+    const makeConfession = async () => {
+        if (window.ethereum !== undefined) {
+            try {
+                // Save audio to IPFS
+                const cid = await saveToIPFS(audio);
+                console.log(cid);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
 
     return (
         <>
