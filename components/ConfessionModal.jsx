@@ -17,35 +17,71 @@ import {
     Link,
 } from "@chakra-ui/react";
 
-import saveToIPFS from '../utils/saveToIPFS';
+import saveToIPFS from "../utils/saveToIPFS";
+import getContract from "../utils/getContract";
 
 const ConfessionModal = ({ isOpen, onClose }) => {
+    const toast = useToast();
+
     const [audio, setAudio] = useState(null);
-    const [message, setMessage] = useState('');
-    const [category, setCategory] = useState('');
+    const [message, setMessage] = useState("");
+    const [category, setCategory] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const initialRef = useRef();
     const audioRef = useRef();
 
     const makeConfession = async () => {
-        if (window.ethereum !== undefined) {
+        if (typeof window.ethereum !== undefined) {
             try {
+                setIsSubmitting(true);
                 // Save audio to IPFS
-                const cid = await saveToIPFS(audio);
-                console.log(cid);
-            } catch (err) {
-                console.log(err);
+                const audioCid = await saveToIPFS(audio);
+
+                const contract = getContract();
+                const tx = await contract.createConfession(message, audioCid, category);
+
+                toast({
+                    title: "Hurrah!",
+                    description: (
+                        <>
+                            <p>It may take a few minutes for your confession to show up.</p>
+
+                            <Link
+                                href={`https://goerli.etherscan.io/tx/${tx.hash}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                textDecoration={"underline"}
+                            >
+                                check the status of your confession on Etherscan
+                            </Link>
+                        </>
+                    ),
+                    status: "info",
+                    position: "top-right",
+                    duration: 5000,
+                    isClosable: true,
+                });
+            } catch (error) {
+                console.log("Error: ", err);
+                toast({
+                    title: "Whoops!",
+                    description: "Something went wrong.",
+                    status: "error",
+                    position: "top-right",
+                    duration: 5000,
+                    isClosable: true,
+                });
+            } finally {
+                setIsSubmitting(false);
+                onClose();
             }
         }
     };
 
     return (
         <>
-            <Modal
-                initialFocusRef={initialRef}
-                isOpen={isOpen}
-                onClose={onClose}>
+            <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Make your confession!</ModalHeader>
@@ -54,10 +90,10 @@ const ConfessionModal = ({ isOpen, onClose }) => {
                     <ModalBody pb={6}>
                         <FormControl>
                             <Input
-                                type='file'
+                                type="file"
                                 ref={audioRef}
-                                accept='audio/*'
-                                onChange={e => setAudio(e.target.files[0])}
+                                accept="audio/*"
+                                onChange={(e) => setAudio(e.target.files[0])}
                             />
                         </FormControl>
                         <FormControl mt={4}>
@@ -65,17 +101,17 @@ const ConfessionModal = ({ isOpen, onClose }) => {
                             <Textarea
                                 ref={initialRef}
                                 value={message}
-                                placeholder='Type your confession here'
-                                size='sm'
-                                onChange={e => setMessage(e.target.value)}
+                                placeholder="I have to confess that..."
+                                size="sm"
+                                onChange={(e) => setMessage(e.target.value)}
                             />
                         </FormControl>
-
                         <FormControl mt={4}>
                             <FormLabel>Category</FormLabel>
                             <Select
-                                placeholder='Select category'
-                                onChange={e => setCategory(e.target.value)}>
+                                placeholder="Select category"
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
                                 <option value="love">Love</option>
                                 <option value="hate">Hate</option>
                                 <option value="happiness">Happiness</option>
@@ -89,11 +125,12 @@ const ConfessionModal = ({ isOpen, onClose }) => {
 
                     <ModalFooter>
                         <Button
-                            colorScheme='pink'
+                            colorScheme="pink"
                             mr={3}
                             isLoading={isSubmitting}
                             onClick={makeConfession}
-                            loadingText='publishing'>
+                            loadingText="Publishing"
+                        >
                             Publish
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>
@@ -101,7 +138,7 @@ const ConfessionModal = ({ isOpen, onClose }) => {
                 </ModalContent>
             </Modal>
         </>
-    )
-}
+    );
+};
 
-export default ConfessionModal
+export default ConfessionModal;

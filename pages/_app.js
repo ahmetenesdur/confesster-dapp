@@ -4,7 +4,7 @@ import { extendTheme } from '@chakra-ui/react'
 import { EthereumClient, modalConnectors, walletConnectProvider, } from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { arbitrum, mainnet, polygon, goerli } from "wagmi/chains";
+import { goerli } from "wagmi/chains";
 
 import "@fontsource/m-plus-rounded-1c"
 import "@fontsource/open-sans"
@@ -12,7 +12,7 @@ import Layout from '../components/Layout'
 
 import '../styles/globals.css'
 
-const chains = [arbitrum, mainnet, polygon, goerli];
+const chains = [goerli];
 
 // Wagmi client
 const { provider } = configureChains(chains, [
