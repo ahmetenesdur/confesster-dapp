@@ -5,11 +5,13 @@ import { EthereumClient, modalConnectors, walletConnectProvider, } from "@web3mo
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { goerli } from "wagmi/chains";
+import { ApolloProvider } from "@apollo/client";
 
 import "@fontsource/m-plus-rounded-1c"
 import "@fontsource/open-sans"
 import Layout from '../components/Layout'
 
+import client from "../apollo-client";
 import '../styles/globals.css'
 
 const chains = [goerli];
@@ -39,7 +41,7 @@ export const theme = extendTheme({
 
 export default function App({ Component, pageProps }) {
   return (
-    <div>
+    <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
         <WagmiConfig client={wagmiClient}>
           <Layout>
@@ -54,6 +56,6 @@ export default function App({ Component, pageProps }) {
         themeMode="dark"
         themeColor="magenta"
       />
-    </div>
+    </ApolloProvider>
   )
 }
