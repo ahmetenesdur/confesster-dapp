@@ -1,9 +1,10 @@
-import Head from 'next/head'
+import Head from "next/head";
 import { useQuery, gql } from "@apollo/client";
-import { Inter } from '@next/font/google'
+import { Inter } from "@next/font/google";
 import { Grid, GridItem, Heading, Text } from "@chakra-ui/react";
 
-import ConfessionCard from '../components/ConfessionCard';
+import ConfessionCard from "../components/ConfessionCard";
+import ConfessionCardSkeleton from "../components/skeleton/ConfessionCardSkeleton";
 
 const GET_CONFESSIONS = gql`
   query confessions(
@@ -30,7 +31,7 @@ const GET_CONFESSIONS = gql`
   }
 `;
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_CONFESSIONS, {
@@ -42,10 +43,7 @@ export default function Home() {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-
-  console.log(data);
 
   return (
     <div>
@@ -57,14 +55,28 @@ export default function Home() {
       </Head>
 
       <main>
-        <Grid mt="10" templateColumns="repeat(2, 1fr)" gap={6}>
-          {data?.confessions?.map((confession, index) => (
-            <GridItem colSpan={1} key={confession.id}>
-              <ConfessionCard confession={confession} index={index} />
-            </GridItem>
-          ))}
+        <Grid
+          mt="10"
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            md: "repeat(2, 1fr)",
+          }}
+          gap={6}
+          justifyContent={"center"}
+        >
+          {loading
+            ? new Array(6).fill(0).map((_, index) => (
+                <GridItem key={index}>
+                  <ConfessionCardSkeleton />
+                </GridItem>
+              ))
+            : data?.confessions?.map((confession, index) => (
+                <GridItem colSpan={1} key={confession.id}>
+                  <ConfessionCard confession={confession} index={index} />
+                </GridItem>
+              ))}
         </Grid>
       </main>
     </div>
-  )
+  );
 }
