@@ -94,7 +94,7 @@ export default function Coffees() {
                 transition: "all 0.2s",
               }}
             >
-              <Box px={6} py={4} bg={useColorModeValue("white", "gray.700")}>
+              <Box bg="gray.50" _dark={{ bg: "gray.700" }} px={6} py={4}>
                 <Text as="span">
                   {coffee.buyer.slice(0, 6)}...{coffee.buyer.slice(-4)}{" "}
                 </Text>
