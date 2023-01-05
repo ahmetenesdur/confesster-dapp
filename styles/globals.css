@@ -1,0 +1,14 @@
+html {
+    scroll-behavior: smooth;
+  }
+  
+  ::selection {
+    background-color: #f3f4f6;
+    color: #1f2937;
+  }
+  
+  #__next {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }

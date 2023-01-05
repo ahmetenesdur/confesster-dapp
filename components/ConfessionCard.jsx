@@ -73,7 +73,7 @@ const ConfessionCard = ({
             </audio>
           </chakra.div>
           <chakra.p fontWeight={"medium"} fontSize={"17px"} pb={4}>
-            {message}
+            {message.charAt(0).toUpperCase() + message.slice(1)}
           </chakra.p>
           <chakra.p fontWeight={"bold"} fontSize={14}>
             {author.substring(0, 6)}...{author.substring(author.length - 4)}
@@ -83,7 +83,7 @@ const ConfessionCard = ({
             </chakra.span>
           </chakra.p>
 
-          <Badge colorScheme="yellow" mt={4} width="fit-content">
+          <Badge colorScheme="blue" mt={4} width="fit-content">
             {category}
           </Badge>
         </Flex>

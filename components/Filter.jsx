@@ -25,7 +25,7 @@ const Filter = ({ activeTag, setActiveTag }) => {
       {tags.map((tag) => (
         <Button
           key={tag}
-          colorScheme={activeTag === tag ? "yellow" : "gray"}
+          colorScheme={activeTag === tag ? "blue" : "gray"}
           variant="solid"
           onClick={() => setActiveTag(tag)}
         >

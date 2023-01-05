@@ -112,7 +112,7 @@ const Layout = ({ children }) => {
                         {isConnected && (
                             <Button
                                 variant={"solid"}
-                                colorScheme={"pink"}
+                                colorScheme={"purple"}
                                 size={"sm"}
                                 mr={4}
                                 leftIcon={<AddIcon />}
@@ -123,7 +123,7 @@ const Layout = ({ children }) => {
                         )}
 
                         {isConnected ? (
-                            <Button variant={"outline"} colorScheme={"pink"} size={"sm"}>
+                            <Button variant={"outline"} colorScheme={"purple"} size={"sm"}>
                                 {address?.slice(0, 6)}...{address?.slice(-4)}
                             </Button>
                         ) : (
@@ -157,7 +157,7 @@ const Layout = ({ children }) => {
                             {isConnected && (
                                 <Button
                                     variant={"solid"}
-                                    colorScheme={"pink"}
+                                    colorScheme={"purple"}
                                     size={"sm"}
                                     mr={4}
                                     leftIcon={<AddIcon />}
@@ -168,7 +168,7 @@ const Layout = ({ children }) => {
                             )}
 
                             {isConnected ? (
-                                <Button variant={"outline"} colorScheme={"pink"} size={"sm"}>
+                                <Button variant={"outline"} colorScheme={"purple"} size={"sm"}>
                                     {address?.slice(0, 6)}...{address?.slice(-4)}
                                 </Button>
                             ) : (

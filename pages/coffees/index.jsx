@@ -1,12 +1,6 @@
 import Head from "next/head";
 import { useQuery, gql } from "@apollo/client";
-import {
-  useColorModeValue,
-  VStack,
-  Heading,
-  Text,
-  Box,
-} from "@chakra-ui/react";
+import { VStack, Heading, Text, Box } from "@chakra-ui/react";
 import { formatRelative } from "date-fns";
 
 const GET_COFFEES = gql`
@@ -94,7 +88,7 @@ export default function Coffees() {
                 transition: "all 0.2s",
               }}
             >
-              <Box bg="gray.50" _dark={{ bg: "gray.700" }} px={6} py={4}>
+              <Box bg="gray.50" _dark={{ bg: "gray.800" }} px={6} py={4}>
                 <Text as="span">
                   {coffee.buyer.slice(0, 6)}...{coffee.buyer.slice(-4)}{" "}
                 </Text>
@@ -110,7 +104,8 @@ export default function Coffees() {
                   bgClip="text"
                   fontSize={"lg"}
                 >
-                  {coffee.message}
+                  {coffee.message.charAt(0).toUpperCase() +
+                    coffee.message.slice(1)}
                 </Text>
                 <Text mt={2} textAlign="right">
                   {formatDate(coffee.timestamp)}
