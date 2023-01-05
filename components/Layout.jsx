@@ -170,7 +170,7 @@ const Layout = ({ children }) => {
                   size={"sm"}
                   mr={4}
                   leftIcon={<AddIcon />}
-                  onClick={() => {}}
+                  onClick={onModalOpen}
                 >
                   Confess
                 </Button>
