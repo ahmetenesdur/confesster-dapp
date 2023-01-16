@@ -188,7 +188,10 @@ const Layout = ({ children }) => {
                   {address?.slice(0, 6)}...{address?.slice(-4)}
                 </Button>
               ) : (
-                <Web3Button />
+                //center the object
+                <Box display="flex" justifyContent="center">
+                  <Web3Button />
+                </Box>
               )}
             </Stack>
           </Box>

@@ -1,23 +1,23 @@
 const hre = require("hardhat");
-const fs = require('fs-extra')
+const fs = require("fs-extra");
 
 async function main() {
-  const Confesster = await hre.ethers.getContractFactory("Confesster");
-  const confesster = await Confesster.deploy();
+  const Certificate = await hre.ethers.getContractFactory("Certificate");
+  const certificate = await Certificate.deploy();
 
-  await confesster.deployed();
+  await certificate.deployed();
 
-  console.log("Confesster deployed to:", confesster.address);
+  console.log("Certificate deployed to:", certificate.address);
 
   // We also save the contract's artifacts and address in the frontend directory
   // so that we can use it in our frontend
   fs.writeFileSync(
     "config.js",
     `
-    export const contractAddress = "${confesster.address}";
-    export const ownerAddress = "${confesster.signer.address}";
+    export const contractAddress = "${certificate.address}";
+    export const ownerAddress = "${certificate.signer.address}";
     `
-  )
+  );
 }
 
 main().catch((error) => {
